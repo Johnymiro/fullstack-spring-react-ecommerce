@@ -16,12 +16,12 @@ import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+@Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EntityListeners(value = AuditingEntityListener.class)
-@Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Item extends Auditable {
 
 	@Id
@@ -35,6 +35,9 @@ public class Item extends Auditable {
 	private BigInteger stock;
 	private BigDecimal priceTag;
 
+	public Item(String name){
+		this.name = name;
+	}
 	public Long getItemUid() {
 		return itemUid;
 	}
