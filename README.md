@@ -22,5 +22,7 @@ Cmder - https://cmder.net/
 
 Notepad++: https://notepad-plus-plus.org/downloads/v7.8.8/
 
+Postman: https://www.postman.com/downloads/
+
 
 Don't forget to handle / throw exceptions on the right way.
