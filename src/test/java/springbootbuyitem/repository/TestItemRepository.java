@@ -1,5 +1,6 @@
 package springbootbuyitem.repository;
 
+import com.training.springbootbuyitem.BuyItemApplication;
 import com.training.springbootbuyitem.entity.model.Item;
 import com.training.springbootbuyitem.repository.ItemRepository;
 import org.junit.Assert;
@@ -14,8 +15,9 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
-@SpringBootTest
+@SpringBootTest(classes = BuyItemApplication.class)
 @RunWith(SpringRunner.class)
 public class TestItemRepository {
 
@@ -33,7 +35,7 @@ public class TestItemRepository {
 	}
 
 	// TODO
-	/*
+
 	@Test
 	public void getItemsTest() {
 		assertThat(itemRepository.findAll().size(), is(5));
