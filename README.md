@@ -20,3 +20,13 @@ Notepad++: https://notepad-plus-plus.org/downloads/v7.8.8/
 
 
 Don't forget to handle / throw exceptions on the right way.
+
+Try the API with:
+
+http://127.0.0.1:8888/1
+
+to get the response to one with one of the items details
+
+http://127.0.0.1:8888/all
+
+To get all the items available in the repository

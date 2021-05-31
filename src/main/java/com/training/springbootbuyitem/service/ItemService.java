@@ -83,16 +83,10 @@ public class ItemService implements IItemService {
 		return itemRepository.save(item);
 	}
 
-	@Override
-	public void notify(NotificationRequest request) {
-		restTemplate.postForEntity(itemStorageProperties.getSendNotificationEmailUri(),
-				request, Object.class);
-	}
 
-	//TODO create the restock method that add more "quantity" stock for the item represented by id
 	@Override
 	public void restock(Long id, Integer quantity) {
-
+		// TODO
 	}
 
 	//TODO create the dispatch method that use "quantity"  items from item stock for the item represented by id

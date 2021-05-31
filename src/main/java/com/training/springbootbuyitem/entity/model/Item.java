@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Proxy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Column;
@@ -13,15 +14,16 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-
+@Proxy(lazy = false)
+@Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EntityListeners(value = AuditingEntityListener.class)
-@Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Item extends Auditable {
 
 	@Id
@@ -35,6 +37,9 @@ public class Item extends Auditable {
 	private BigInteger stock;
 	private BigDecimal priceTag;
 
+	public Item(String name){
+		this.name = name;
+	}
 	public Long getItemUid() {
 		return itemUid;
 	}
