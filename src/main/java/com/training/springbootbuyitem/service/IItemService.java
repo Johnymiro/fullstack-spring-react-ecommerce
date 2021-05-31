@@ -5,8 +5,6 @@ import com.training.springbootbuyitem.entity.request.NotificationRequest;
 
 public interface IItemService extends ICrudService<Item> {
 
-	void notify(NotificationRequest request);
-
 	void restock(Long id, Integer quantity);
 
 	void dispatch(Long id, Integer quantity);

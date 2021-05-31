@@ -39,7 +39,7 @@ public interface IBuyController {
 	ResponseEntity<HttpStatus> deleteItem(@PathVariable("id") Long id);
 
 	@GetMapping
-	@ServiceOperation("listItems")
+																																																																																																																																																																																																																																																																																																								@ServiceOperation("listItems")
 	ResponseEntity<List<GetItemResponseDto>> listItems();
 
 	@PostMapping("/{id}/dispatch")

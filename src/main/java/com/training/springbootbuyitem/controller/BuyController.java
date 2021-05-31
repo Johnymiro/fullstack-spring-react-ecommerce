@@ -30,11 +30,15 @@ import java.util.stream.Collectors;
 
 @RefreshScope
 @RestController
-@RequestMapping("/items")
 public class BuyController implements IBuyController {
 
 	@Autowired
 	private ItemService itemService;
+
+	@RequestMapping("/")
+	public String home(){
+		return "This is what i was looking for";
+	}
 
 	/**
 	 * @JavaDoc ModelMapper is a mapping tool easily configurable to accommodate most application defined entities check
@@ -74,7 +78,7 @@ public class BuyController implements IBuyController {
 	}
 
 	@Override
-	@GetMapping
+	@GetMapping("/all")
 	@ServiceOperation("listItems")
 	public ResponseEntity<List<GetItemResponseDto>> listItems() {
 		return new ResponseEntity<>(itemService.list().stream().map(i -> mapper.map(i, GetItemResponseDto.class)).collect(
