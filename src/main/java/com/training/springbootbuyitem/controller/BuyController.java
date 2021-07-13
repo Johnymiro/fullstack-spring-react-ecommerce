@@ -7,6 +7,7 @@ import com.training.springbootbuyitem.entity.request.RestockItemRequestDto;
 import com.training.springbootbuyitem.entity.response.CreateItemResponseDto;
 import com.training.springbootbuyitem.entity.response.GetItemResponseDto;
 import com.training.springbootbuyitem.entity.response.UpdateItemResponseDto;
+import com.training.springbootbuyitem.entity.response.user.GetUserResponseDto;
 import com.training.springbootbuyitem.service.ItemService;
 import com.training.springbootbuyitem.utils.annotation.ServiceOperation;
 import org.modelmapper.ModelMapper;
@@ -123,5 +124,15 @@ public class BuyController implements IBuyController {
 			itemService.restock(id, request.getQuantity());
 			return new ResponseEntity<>(HttpStatus.OK);
 	}
+
+
+
+	/*
+	@Override
+	@GetMapping("/user/{id}")
+	@ServiceOperation("getUser")
+	public ResponseEntity<GetUserResponseDto> getUser(@PathVariable("id") Long id) {
+		return new ResponseEntity<>(mapper.map(userService.get(id), GetUserResponseDto.class), HttpStatus.OK);
+	} */
 
 }

@@ -6,3 +6,5 @@ insert into item(item_uid, name, description, market,stock, price_tag, state) va
 
 insert into item(item_uid, name, description, market,stock, price_tag, state) values (6, 'item 6', '', 'UK',20,2.5,'AVAILABLE');
 insert into item(item_uid, name, description, market,stock, price_tag, state) values (7, 'item 7', '', 'ES',20,2.5,'EMPTY');
+
+insert into user(user_uid, name, email, profile_level, profile, description) values (1, 'Johny Miro', 'johny@tesl.cp', 1,'Admin','Administrator');

@@ -26,18 +26,30 @@ public class User extends Auditable {
     private Long userUid;
     @Column(unique = true)
     private String name;
+
     private String description;
     private String email;
+    private String profile;
+    private Integer profileLevel;
+
 
     public User(String name){
         this.name = name;
     }
 
-    public Long getItemUid() {
+    public Long getUserUid() {
         return userUid;
     }
 
-    public void setItemUid(Long itemUid) {
+    public String getUserProfile() {
+        return profile;
+    }
+
+    public Integer getUserProfileLevel() {
+        return profileLevel;
+    }
+
+    public void setUserUid(Long userUid) {
         this.userUid= userUid;
     }
 
