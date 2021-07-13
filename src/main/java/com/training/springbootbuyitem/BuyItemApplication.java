@@ -9,9 +9,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableDiscoveryClient
 @SpringBootApplication()
 public class BuyItemApplication {
-
-        public static void main(String[] args) {
+     public static void main(String[] args) {
             SpringApplication.run(BuyItemApplication.class, args);
         }
-
 }

@@ -3,6 +3,7 @@ package com.training.springbootbuyitem.controller;
 import com.training.springbootbuyitem.entity.response.ErrorMessage;
 import com.training.springbootbuyitem.error.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
+import org.jboss.logging.MDC;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,19 +41,17 @@ public class RestControllerAdvice {
 	}
 
 	private ResponseEntity<ErrorMessage> buildErrorMessageResponseEntity(String msg, HttpStatus httpStatus) {
-		/*
 		log.error(msg);
-		return new ResponseEntity<>(
+		/*return new ResponseEntity<>(
 				ErrorMessage.builder()
 						.message(msg)
 						.code(httpStatus.value())
 						.traceId(MDC.get(ItemStorageConstant.TRACE_ID))
 						.operation(MDC.get(ItemStorageConstant.OPERATION))
 						.build(),
-				httpStatus);
+				httpStatus);*/
 
-		 */
+
 		throw new NotImplementedException();
 	}
-
 }
