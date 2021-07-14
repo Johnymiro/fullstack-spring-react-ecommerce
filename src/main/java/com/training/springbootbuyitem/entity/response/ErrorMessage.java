@@ -1,15 +1,15 @@
 package com.training.springbootbuyitem.entity.response;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import org.aspectj.internal.lang.annotation.ajcDeclareEoW;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ErrorMessage {
-
-	public ErrorMessage(){}
 
 	private String traceId;
 	private String operation;
@@ -18,7 +18,7 @@ public class ErrorMessage {
 
 
 
-
+/*
 	public String getTraceId() {
 		return traceId;
 	}
@@ -50,4 +50,6 @@ public class ErrorMessage {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+	*/
+
 }

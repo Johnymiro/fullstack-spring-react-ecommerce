@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+
 @Proxy(lazy = false)
 @Entity
 @Data
