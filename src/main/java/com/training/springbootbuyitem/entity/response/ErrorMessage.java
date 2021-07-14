@@ -1,5 +1,12 @@
 package com.training.springbootbuyitem.entity.response;
 
+import lombok.Builder;
+import org.aspectj.internal.lang.annotation.ajcDeclareEoW;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@Builder
 public class ErrorMessage {
 
 	public ErrorMessage(){}
@@ -8,6 +15,8 @@ public class ErrorMessage {
 	private String operation;
 	private int code;
 	private String message;
+
+
 
 
 	public String getTraceId() {
