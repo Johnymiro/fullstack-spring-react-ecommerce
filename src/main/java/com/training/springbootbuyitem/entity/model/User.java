@@ -14,6 +14,7 @@ import java.math.BigInteger;
 
 @Proxy(lazy = false)
 @Entity
+@Table(name = "user")
 @Data
 @Builder
 @NoArgsConstructor
@@ -25,17 +26,20 @@ public class User extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_uid")
     private Long userUid;
-    @Column(unique = true)
     private String name;
-
     private String description;
+
+    @Column(unique = true)
     private String email;
+
     private String profile;
     private Integer profileLevel;
+    private String userName;
 
 
-    public User(String name){
+    public User(String name, String userName){
         this.name = name;
+        this.userName = userName;
     }
 
     public Long getUserUid() {
@@ -57,18 +61,16 @@ public class User extends Auditable {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
 
-
-
-
-
-
-
-
+    public String getUserName() {
+        return userName;
+    }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
 
     public void setDescription(String description) {

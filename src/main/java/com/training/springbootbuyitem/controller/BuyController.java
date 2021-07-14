@@ -126,6 +126,16 @@ public class BuyController implements IBuyController {
 	}
 
 
+	/*
+	@Override
+	@GetMapping("/users-all")
+	@ServiceOperation("listItems")
+	public ResponseEntity<List<GetItemResponseDto>> listItems() {
+		return new ResponseEntity<>(itemService.list().stream().map(i -> mapper.map(i, GetItemResponseDto.class)).collect(
+				Collectors.toList()), HttpStatus.OK);
+	}
+*/
+
 
 	/*
 	@Override
