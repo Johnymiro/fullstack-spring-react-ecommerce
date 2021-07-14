@@ -91,8 +91,6 @@ public class RestControllerAdvice {
 						.operation(MDC.get(BuyItemConstant.OPERATION))
 						.build(),
 				httpStatus);
-
-
 		//throw new NotImplementedException();
 	}
 }

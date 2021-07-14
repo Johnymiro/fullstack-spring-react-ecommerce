@@ -23,6 +23,7 @@ public class User extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_uid")
     private Long userUid;
     @Column(unique = true)
     private String name;
