@@ -44,7 +44,7 @@ public class ItemService implements IItemService {
 				new EntityNotFoundException(EnumEntity.ITEM.name(), id));
 	}
 
-	// TODO - ex 10
+	// DONE => TODO - ex 10
 	@Override
 	public List<Item> get(List<Long> ids) {
 		return itemRepository.findAllById(ids);
@@ -55,10 +55,23 @@ public class ItemService implements IItemService {
 		itemRepository.delete(get(id));
 	}
 
+
+
+	@Override
+	public Item save(Item item) {
+		item.setState(EnumItemState.AVAILABLE.name());
+		return itemRepository.save(item);
+	}
+
+
 	@Override
 	public Item update(Item item) {
+		System.out.println("Testing update id:");
+		System.out.println(item.getItemUid());
+		System.out.println(!StringUtils.isEmpty(item.getName()));
+
 		Item persistedItem = get(item.getItemUid());
-		if (!StringUtils.hasText(item.getName())) {
+		if (!StringUtils.isEmpty(item.getName())) {
 			persistedItem.setName(item.getName());
 		}
 		if (!StringUtils.isEmpty(item.getDescription())) {
@@ -67,21 +80,15 @@ public class ItemService implements IItemService {
 		if (!StringUtils.isEmpty(item.getMarket())) {
 			persistedItem.setMarket(item.getMarket());
 		}
-		if (item.getStock() != null && item.getStock().intValue() >= 0) {
+		if (item.getStock() != null && item.getStock().intValue() >= -1) {
 			persistedItem.setStock(item.getStock());
 		}
-		if (item.getPriceTag() != null && item.getPriceTag().longValue() >= 0.0) {
+		if (item.getPriceTag() != null && item.getPriceTag().longValue() >= -1.0) {
 			persistedItem.setPriceTag(item.getPriceTag());
 		}
-		return persistedItem;
-	}
 
-	@Override
-	public Item save(Item item) {
-		item.setState(EnumItemState.AVAILABLE.name());
-		return itemRepository.save(item);
+		return save(persistedItem);
 	}
-
 
 	@Override
 	public void restock(Long id, Integer quantity) {
