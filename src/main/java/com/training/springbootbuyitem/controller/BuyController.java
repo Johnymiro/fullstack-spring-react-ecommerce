@@ -69,18 +69,15 @@ public class BuyController implements IBuyController {
 	@PostMapping("/items/list")
 	@ServiceOperation("listItems")
 	public ResponseEntity<List<GetItemResponseDto>> listItems(@RequestBody List<Long> ids) {
-		for(Long id: ids) {
-
-			System.out.println(id);
-		}
 		return new ResponseEntity<>(itemService.get(ids).stream().map(i -> mapper.map(i, GetItemResponseDto.class)).collect(
 				Collectors.toList()), HttpStatus.OK);
 	}
 
 	@Override
-	@PatchMapping("/{id}")
+	@PatchMapping("/items/{id}")
 	@ServiceOperation("updateItem")
 	public ResponseEntity<UpdateItemResponseDto> updateItem(@PathVariable("id") Long id, @RequestBody Item item) {
+		System.out.println(item.getName());
 		item.setItemUid(id);
 			return new ResponseEntity<>(mapper.map(itemService.update(item), UpdateItemResponseDto.class), HttpStatus.OK);
 	}

@@ -85,7 +85,9 @@ public class ItemService implements IItemService {
 
 	@Override
 	public void restock(Long id, Integer quantity) {
-		// TODO
+		Item item = get(id);
+		item.setStock(item.getStock().add(BigInteger.valueOf(quantity)));
+		save(item);
 	}
 
 	//TODO create the dispatch method that use "quantity"  items from item stock for the item represented by id
