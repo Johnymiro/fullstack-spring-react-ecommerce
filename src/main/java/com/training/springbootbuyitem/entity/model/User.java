@@ -11,6 +11,7 @@ import javax.persistence.*;
 
 @Proxy(lazy = false)
 @Entity
+@Table(name = "user")
 @Data
 @Builder
 @NoArgsConstructor
@@ -22,19 +23,21 @@ public class User extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_uid")
     private Long userUid;
-    @Column(unique = true)
     private String name;
 
-
     private String password;
-
     private String description;
+
+    @Column(unique = true)
     private String email;
+
     private String profile;
     private Integer profileLevel;
+    private String userName;
 
-    public User(String name){
+    public User(String name, String userName){
         this.name = name;
+        this.userName = userName;
     }
 
     public void setUserUid(Long userUid) {
@@ -65,14 +68,12 @@ public class User extends Auditable {
         return name;
     }
 
-
-
-
-
-
-
-
-
+    public String getUserName() {
+        return userName;
+    }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public void setDescription(String description) {
         this.description = description;
