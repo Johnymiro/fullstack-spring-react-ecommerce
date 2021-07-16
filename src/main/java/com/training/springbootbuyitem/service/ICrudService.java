@@ -12,7 +12,7 @@ public interface ICrudService<T extends Object> {
 	T get(Long id);
 
 	//TODO ex: 10
-	List<T> get(List<Long> id);
+	List<T> get(List<Long> ids);
 
 	void delete(Long id);
 
