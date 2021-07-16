@@ -30,6 +30,10 @@ public interface IBuyController {
 	@ServiceOperation("getItem")
 	ResponseEntity<GetItemResponseDto> getItem(@PathVariable("id") Long id);
 
+	@PostMapping("/list-items")
+	@ServiceOperation("listItems")
+	ResponseEntity<List<GetItemResponseDto>> listItems(@RequestBody List<Long> ids);
+
 	@PatchMapping("/{id}")
 	@ServiceOperation("updateItem")
 	ResponseEntity<UpdateItemResponseDto> updateItem(@PathVariable("id") Long id, @RequestBody Item item);

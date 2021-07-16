@@ -10,10 +10,6 @@ import org.hibernate.annotations.Proxy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.Set;
-
 
 @Proxy(lazy = false)
 @Entity
@@ -31,9 +27,10 @@ public class User extends Auditable {
     private Long userUid;
     private String name;
 
+    private String password;
+
     @Column(unique = true)
     private String email;
-    private String password;
     private String userName;
 
     @Enumerated(EnumType.STRING)
@@ -46,8 +43,36 @@ public class User extends Auditable {
         this.userName = userName;
     }
 
+    public void setUserUid(Long userUid) {
+        this.userUid= userUid;
+    }
 
+    public Long getUserUid() {
+        return userUid;
+    }
+
+    public void setUserProfile(EnumProfile profile) {
+        this.profile= profile;
+    }
+
+    public EnumProfile getUserProfile() {
+        return this.profile;
+    }
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getUserName() {
+        return this.userName;
+    }
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
 }
