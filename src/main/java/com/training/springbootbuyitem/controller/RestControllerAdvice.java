@@ -23,7 +23,6 @@ public class RestControllerAdvice {
 
 	final static Logger logger = LoggerFactory.getLogger(RestControllerAdvice.class);
 
-
 	@ExceptionHandler(EntityNotFoundException.class)
 	public ResponseEntity<ErrorMessage> handleNotFoundError(Exception e) {
 		logger.error("Handle Entity Not Found Exception Launched");

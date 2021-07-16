@@ -8,9 +8,6 @@ import org.hibernate.annotations.Proxy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-
 
 @Proxy(lazy = false)
 @Entity
@@ -28,18 +25,28 @@ public class User extends Auditable {
     @Column(unique = true)
     private String name;
 
+
+    private String password;
+
     private String description;
     private String email;
     private String profile;
     private Integer profileLevel;
 
-
     public User(String name){
         this.name = name;
     }
 
+    public void setUserUid(Long userUid) {
+        this.userUid= userUid;
+    }
+
     public Long getUserUid() {
         return userUid;
+    }
+
+    public void setUserProfile(String profile) {
+        this.profile= profile;
     }
 
     public String getUserProfile() {
@@ -50,16 +57,12 @@ public class User extends Auditable {
         return profileLevel;
     }
 
-    public void setUserUid(Long userUid) {
-        this.userUid= userUid;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
 

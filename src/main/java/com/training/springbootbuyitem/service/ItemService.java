@@ -1,7 +1,6 @@
 package com.training.springbootbuyitem.service;
 
 import com.training.springbootbuyitem.entity.model.Item;
-import com.training.springbootbuyitem.entity.request.NotificationRequest;
 import com.training.springbootbuyitem.enums.EnumEntity;
 import com.training.springbootbuyitem.enums.EnumItemState;
 import com.training.springbootbuyitem.error.EntityNotFoundException;
@@ -47,8 +46,8 @@ public class ItemService implements IItemService {
 
 	// TODO - ex 10
 	@Override
-	public List<Item> get(List<Long> id) {
-		return new ArrayList<>();
+	public List<Item> get(List<Long> ids) {
+		return itemRepository.findAllById(ids);
 	}
 
 	@Override
