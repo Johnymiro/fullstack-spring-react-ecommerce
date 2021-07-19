@@ -31,6 +31,7 @@ public class User extends Auditable {
 
     @Column(unique = true)
     private String email;
+    @Column(unique = true)
     private String userName;
 
     @Enumerated(EnumType.STRING)

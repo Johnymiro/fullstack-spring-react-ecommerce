@@ -1,10 +1,14 @@
 package com.training.springbootbuyitem.entity.request.user;
 
+import com.training.springbootbuyitem.enums.EnumProfile;
+import com.training.springbootbuyitem.enums.EnumState;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
@@ -19,13 +23,16 @@ public class CreateUserRequestDto {
     private String name;
     @NotEmpty
     private String email;
-    @NotNull
-    @PositiveOrZero
-    private Integer profileLevel;
     @NotEmpty
-    private String profile;
+    private String password;
+    @NotEmpty
+    private String userName;
 
-    private String description;
+    @Enumerated(EnumType.STRING)
+    private EnumState state;
+
+    @Enumerated(EnumType.STRING)
+    private EnumProfile profile;
 
    //   There is a need for new object to store User operations
 }
