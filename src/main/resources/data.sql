@@ -7,3 +7,4 @@ insert into item(item_uid, name, description, market,stock, price_tag, state) va
 insert into item(item_uid, name, description, market,stock, price_tag, state) values (6, 'item 6', '', 'UK',20,2.5,'AVAILABLE');
 insert into item(item_uid, name, description, market,stock, price_tag, state) values (7, 'item 7', '', 'ES',20,2.5,'EMPTY');
 
+insert into user(user_uid, name, password, email, user_name, profile, state) values (1, 'Test User', '123', 'tes@mial.com', 'Kira21', 'ADMIN', 'ACTIVE');
