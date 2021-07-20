@@ -1,5 +1,6 @@
 package com.training.springbootbuyitem.entity.response.user;
 
+import com.training.springbootbuyitem.entity.model.Role;
 import com.training.springbootbuyitem.enums.EnumProfile;
 import com.training.springbootbuyitem.enums.EnumState;
 import lombok.AllArgsConstructor;
@@ -11,6 +12,7 @@ import javax.persistence.Enumerated;
 import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -19,8 +21,7 @@ public class GetUserResponseDto extends CreateUserResponseDto{
     private String name;
     private String email;
     private String password;
-    private String userName;
+    private String username;
     private EnumState state;
-    private EnumProfile profile;
-
+    private Set<Role> roles;
 }

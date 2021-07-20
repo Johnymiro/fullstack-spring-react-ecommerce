@@ -9,71 +9,110 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Proxy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+
+
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
-@Proxy(lazy = false)
 @Entity
-@Table(name = "user")
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
-public class User extends Auditable {
-
+@Table(	name = "user",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "username"),
+                @UniqueConstraint(columnNames = "email")
+        })
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_uid")
-    private Long userUid;
+    private Long id;
+
+    @NotBlank
+    @Size(max = 20)
     private String name;
 
+    @NotBlank
+    @Size(max = 20)
+    private String username;
+
+    @NotBlank
+    @Size(max = 50)
+    @Email
+    private String email;
+
+    @NotBlank
+    @Size(max = 120)
     private String password;
 
-    @Column(unique = true)
-    private String email;
-    @Column(unique = true)
-    private String userName;
 
     @Enumerated(EnumType.STRING)
-    private EnumProfile profile;
-    @Enumerated(EnumType.STRING)
+    @Size(max = 20)
     private EnumState state;
 
-    public User(String name, String userName){
-        this.name = name;
-        this.userName = userName;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(	name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
+    public User() {
     }
 
-    public void setUserUid(Long userUid) {
-        this.userUid= userUid;
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
     }
 
-    public Long getUserUid() {
-        return userUid;
+    public Long getId() {
+        return id;
     }
 
-    public void setUserProfile(EnumProfile profile) {
-        this.profile= profile;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public EnumProfile getUserProfile() {
-        return this.profile;
+    public String getUsername() {
+        return username;
     }
 
-
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
 
     public String getName() {
         return name;
     }
-
-    public String getUserName() {
-        return this.userName;
+    public void setName(String name) {
+        this.name= name;
     }
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
 }

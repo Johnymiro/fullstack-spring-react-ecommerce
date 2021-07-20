@@ -125,7 +125,6 @@ public class BuyController implements IBuyController {
 			@RequestBody DispatchItemRequestDto request) {
 			itemService.block(id, request.getQuantity());
 			return new ResponseEntity<>(HttpStatus.OK);
-
 	}
 
 	@Override
