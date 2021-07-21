@@ -18,7 +18,7 @@ public class SignupRequest {
     private String email;
     private Set<String> role;
 
-   /* public String getUsername() {
+    public String getUsername() {
         return username;
     }
     public void setUserName(String user) {
@@ -35,5 +35,5 @@ public class SignupRequest {
     }
     public void setEmail(String email) {
         this.email = email;
-    } */
+    }
 }

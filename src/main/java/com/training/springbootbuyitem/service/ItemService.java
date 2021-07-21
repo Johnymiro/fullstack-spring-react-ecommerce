@@ -86,14 +86,9 @@ public class ItemService implements IItemService {
 		if (item.getPriceTag() != null && item.getPriceTag().longValue() >= -1.0) {
 			persistedItem.setPriceTag(item.getPriceTag());
 		}
-<<<<<<< HEAD
 		return save(persistedItem);
 	}
-=======
->>>>>>> c3e534fc1d19a8fa49049a6a47e57af07346f999
 
-		return save(persistedItem);
-	}
 
 	@Override
 	public void restock(Long id, Integer quantity) {

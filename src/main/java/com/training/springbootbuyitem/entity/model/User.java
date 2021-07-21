@@ -49,7 +49,6 @@ public class User {
 
 
     @Enumerated(EnumType.STRING)
-    @Size(max = 20)
     private EnumState state;
 
 

@@ -8,4 +8,8 @@ insert into item(item_uid, name, description, market,stock, price_tag, state) va
 insert into item(item_uid, name, description, market,stock, price_tag, state) values (7, 'item 7', '', 'ES',20,2.5,'EMPTY');
 
 
-insert into user(id, name, username, email, state ) values (1, 'Test User',  'Kira21', 'tes@mial.com', 'ACTIVE');
+insert into user(id, name, username, email, password, state ) values (1, 'Test User',  'Kira21', 'tes@mial.com', '123456', 'ACTIVE');
+
+insert into roles(id, name) VALUES(1,'ADMIN');
+insert into roles(id, name) VALUES(2, 'CUSTOMER');
+insert into roles(id, name) VALUES(3, 'MODERATOR');

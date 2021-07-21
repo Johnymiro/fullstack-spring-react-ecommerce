@@ -16,7 +16,6 @@ public class Role {
     private EnumProfile name;
 
     public Role() {
-
     }
 
     public Role(EnumProfile name) {
