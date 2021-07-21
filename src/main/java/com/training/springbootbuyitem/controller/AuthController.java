@@ -1,7 +1,6 @@
 package com.training.springbootbuyitem.controller;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -81,17 +80,19 @@ public class AuthController {
         System.out.println("inside signup ==================================");
         System.out.println(signUpRequest.getEmail());
         System.out.println(signUpRequest.getRole());
+        System.out.println(userRepository.existsByEmail(signUpRequest.getEmail()));
+        System.out.println(userRepository.existsByUsername(signUpRequest.getUsername()));
         System.out.println("End Debug register user");
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
-                    .body("Error: Username is already taken!");
+                    .body(new MessageResponse("Error: Username is already taken!"));
         }
 
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
             return ResponseEntity
                     .badRequest()
-                    .body("Error: Email is already in use!");
+                    .body(new MessageResponse("Error: Email is already in use!"));
         }
 
         // Create new user's account
@@ -109,26 +110,18 @@ public class AuthController {
         } else {
             strRoles.forEach(role -> {
                 System.out.println("Inside For each ROLE authController ===========>");
-                System.out.println(role);
                 switch (role) {
                     case "ADMIN":
-                        System.out.println("Inside CASE ADMIN ===========>");
-                        Role adminRole = roleRepository.findById(1L)
+                        Role adminRole = roleRepository.findByName(EnumProfile.ADMIN)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(adminRole);
 
-                        System.out.println(adminRole);
-                        System.out.println(roles.toString());
-                        System.out.println(roles);
-                        System.out.println("FInished");
                         break;
                     case "MODERATOR":
-                        System.out.println("Inside CASE MODERATOR ===========>");
                         Role modRole = roleRepository.findByName(EnumProfile.MODERATOR)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(modRole);
 
-                        System.out.println("FInished");
                         break;
                     default:
                         Role userRole = roleRepository.findByName(EnumProfile.CUSTOMER)
@@ -138,15 +131,7 @@ public class AuthController {
             });
         }
 
-        System.out.println("Setting roles");
         user.setRoles(roles);
-        System.out.println("Saving User");
-
-        Iterator itr = roles.iterator();
-        while (itr.hasNext()) {
-            System.out.println(itr.next());
-        }
-        System.out.println(user.getUsername());
         userRepository.save(user);
 
         System.out.println("Finished AuthController Returning >>>>>>>>>>>>>>>>>>>>");
