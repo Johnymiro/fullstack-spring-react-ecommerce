@@ -56,6 +56,7 @@ public class BuyController implements IBuyController {
 	@Override
 	@PostMapping("/create-item")
 	@ServiceOperation("createItem")
+	@PreAuthorize("hasAuthority('MODERATOR') or hasAuthority('ADMIN')")
 	public ResponseEntity<CreateItemResponseDto> createItem(@RequestBody @Valid CreateItemRequestDto request) {
 			return new ResponseEntity<>(mapper.map(itemService.save(mapper.map(request, Item.class)), CreateItemResponseDto.class), HttpStatus.CREATED);
 	}
@@ -63,6 +64,7 @@ public class BuyController implements IBuyController {
 	@Override
 	@GetMapping("/{id}")
 	@ServiceOperation("getItem")
+	@PreAuthorize("hasAuthority('CUSTOMER') or hasAuthority('MODERATOR') or hasAuthority('ADMIN')")
 	public ResponseEntity<GetItemResponseDto> getItem(@PathVariable("id") Long id) {
 			return new ResponseEntity<>(mapper.map(itemService.get(id), GetItemResponseDto.class), HttpStatus.OK);
 	}
@@ -98,7 +100,7 @@ public class BuyController implements IBuyController {
 	@Override
 	@GetMapping("/all")
 	@ServiceOperation("listItems")
-	@PreAuthorize("hasAuthority('ADMIN')")
+	@PreAuthorize("hasAuthority('CUSTOMER') or hasAuthority('MODERATOR') or hasAuthority('ADMIN')")
 	public ResponseEntity<List<GetItemResponseDto>> listItems() {
 		return new ResponseEntity<>(itemService.list().stream().map(i -> mapper.map(i, GetItemResponseDto.class)).collect(
 				Collectors.toList()), HttpStatus.OK);
