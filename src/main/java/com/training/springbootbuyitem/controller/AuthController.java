@@ -77,12 +77,6 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-        System.out.println("inside signup ==================================");
-        System.out.println(signUpRequest.getEmail());
-        System.out.println(signUpRequest.getRole());
-        System.out.println(userRepository.existsByEmail(signUpRequest.getEmail()));
-        System.out.println(userRepository.existsByUsername(signUpRequest.getUsername()));
-        System.out.println("End Debug register user");
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
@@ -134,7 +128,6 @@ public class AuthController {
         user.setRoles(roles);
         userRepository.save(user);
 
-        System.out.println("Finished AuthController Returning >>>>>>>>>>>>>>>>>>>>");
         return ResponseEntity.ok("User registered successfully!");
     }
 }
