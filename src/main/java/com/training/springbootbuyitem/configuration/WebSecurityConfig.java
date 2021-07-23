@@ -1,5 +1,6 @@
 package com.training.springbootbuyitem.configuration;
 
+import com.training.springbootbuyitem.entity.model.CustomSessionManagerImpl;
 import com.training.springbootbuyitem.service.UserDetailsServiceImpl;
 import com.training.springbootbuyitem.service.jwt.AuthEntryPointJwt;
 import com.training.springbootbuyitem.service.jwt.AuthTokenFilter;
@@ -19,6 +20,8 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Configuration
@@ -72,9 +75,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/authenticate", "/users/createUser", "/users/infoAuth", "/shoppingCart/**").permitAll()
                 .anyRequest().authenticated();
 
+        http.sessionManagement()
+                .maximumSessions(10)
+                .maxSessionsPreventsLogin(false)
+                .and().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
+
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         http.headers().frameOptions().disable();
     }
+
+    @Bean
+    public Map<String, CustomSessionManagerImpl> customSessionManagerMap() {return new HashMap<String, CustomSessionManagerImpl>() {
+        private static final long serialVersionUID = 8906436286015294182L;
+    };}
+
    /* @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().anyRequest().permitAll();

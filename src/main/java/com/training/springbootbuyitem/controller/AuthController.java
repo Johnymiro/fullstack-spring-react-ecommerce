@@ -16,20 +16,18 @@ import com.training.springbootbuyitem.entity.response.auth.MessageResponse;
 import com.training.springbootbuyitem.enums.EnumProfile;
 import com.training.springbootbuyitem.repository.RoleRepository;
 import com.training.springbootbuyitem.repository.UserRepository;
+import com.training.springbootbuyitem.service.CustomSessionService;
 import com.training.springbootbuyitem.service.UserDetailsImpl;
 import com.training.springbootbuyitem.service.jwt.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -45,6 +43,8 @@ public class AuthController {
     @Autowired
     RoleRepository roleRepository;
 
+    @Autowired
+    private CustomSessionService customSessionService;
    /* @Autowired
     PasswordEncoder encoder;
 */
@@ -103,7 +103,6 @@ public class AuthController {
             roles.add(userRole);
         } else {
             strRoles.forEach(role -> {
-                System.out.println("Inside For each ROLE authController ===========>");
                 switch (role) {
                     case "ADMIN":
                         Role adminRole = roleRepository.findByName(EnumProfile.ADMIN)
@@ -132,9 +131,10 @@ public class AuthController {
     }
 
 
-    @PostMapping("/logout-all")
-    public ResponseEntity<?> logoutAllUsers(@Valid @RequestBody SignupRequest signUpRequest) {
-
-        return ResponseEntity.ok("User registered successfully!");
+    @GetMapping("/logout-all")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<?> logoutAllUsers() {
+        customSessionService.clearAllSessions();
+        return ResponseEntity.ok("User Unauthenticated successfully!");
     }
 }

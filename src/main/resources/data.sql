@@ -1,4 +1,6 @@
 delete from ITEM;
+delete from USER_ROLES;
+delete from USER;
 delete from ROLES;
 
 insert into item(item_uid, name, description, market,stock, price_tag, state) values (1, 'item 1', '', 'PT',20,30.0,'AVAILABLE');
