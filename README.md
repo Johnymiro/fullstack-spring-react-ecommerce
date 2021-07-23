@@ -43,3 +43,8 @@ http://127.0.0.1:8888/all
 To get all the items available in the repository
 
 
+## Authentication 
+
+In order to authenticate user has to signup through `[DNS]/api/auth/signup` 
+
+

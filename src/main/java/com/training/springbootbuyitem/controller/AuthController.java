@@ -130,4 +130,11 @@ public class AuthController {
 
         return ResponseEntity.ok("User registered successfully!");
     }
+
+
+    @PostMapping("/logout-all")
+    public ResponseEntity<?> logoutAllUsers(@Valid @RequestBody SignupRequest signUpRequest) {
+
+        return ResponseEntity.ok("User registered successfully!");
+    }
 }
