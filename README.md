@@ -45,6 +45,25 @@ To get all the items available in the repository
 
 ## Authentication 
 
-In order to authenticate user has to signup through `[DNS]/api/auth/signup` 
 
+###SignUp:  `[DNS]/api/auth/signup`:
+_Accepted Roles_:  **ADMIN | MODERATOR | CUSTOMER**
+ - Ex:
+`{
+   "username": "Kira112",
+   "email": "test1@gmial.com",
+   "password": "123456",
+   "role": ["MODERATOR"]
+   }
+`
+
+###SignIn:  `[DNS]/api/auth/signin`:
+- Ex:
+  `{
+  "username": "Kira112",
+  "password": "123456",
+  }
+  `
+
+Application end points:
 
